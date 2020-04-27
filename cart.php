@@ -1,10 +1,12 @@
 <html>
   <head>
     <title>
-      Your Cart
+      Group 1A Your Cart
+
     </title>
   </head>
-
+<center>
+<body bgcolor='FFA07A'
   <?php
 
 		$username1 = "z1851835";
@@ -57,20 +59,20 @@
     $cartcontents[$ind]['qntty'] = $quan;
   }
 
-  echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/catelog.php>";
+  echo "<form method=post action=http://students.cs.niu.edu/~z1851835/catalog.php>";
     $arraytostring4 = base64_encode(serialize($cartcontents));
     echo "<input type=hidden name='cart'
                  value=$arraytostring4/>";
     echo "<input type=submit name='button5'
-                 value='Return to Catelog'/>";
+                 value='Return to Catalog'/>";
   echo "</form>";
 
-  echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/cart.php>";
+  echo "<form method=post action=http://students.cs.niu.edu/~z18511835/cart.php>";
     echo "<input type=submit name='button8'
-                 value='Clear Cart'/>";
+                 value='Empty Your Cart'/>";
   echo "</form>";
 
-  if (array_key_exists('pnum', $_REQUEST))
+ /* if (array_key_exists('pnum', $_REQUEST))
   {
     echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/details.php>";
       echo "<input type=hidden name='pnum'
@@ -81,7 +83,7 @@
       echo "<input type=submit name='button6'
                    value='Return to Item'/>";
     echo "</form>";
-  }
+  }*/
 
   if (!empty($cartcontents))
   {
@@ -182,7 +184,7 @@
         }
 
           echo "<td>";
-            echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/cart.php>";
+            echo "<form method=post action=http://students.cs.niu.edu/~z1851835/cart.php>";
               if (array_key_exists('pnum', $_REQUEST))
               {
                 echo "<input type=hidden name='pnum'
@@ -202,7 +204,7 @@
           echo "</td>";
 
           echo "<td>";
-            echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/cart.php>";
+            echo "<form method=post action=http://students.cs.niu.edu/~z1851835/cart.php>";
               if (array_key_exists('pnum', $_REQUEST))
               {
                 echo "<input type=hidden name='pnum'
@@ -259,7 +261,7 @@
 
     echo "<h4>Ready to Order?</h4>";
 
-    echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/checkout.php>";
+    echo "<form method=post action=http://students.cs.niu.edu/~z1851835/checkout.php>";
       $arraytostring12 = base64_encode(serialize($cartcontents));
       echo "<input type=hidden name='cart'
                    value=$arraytostring12/>";
@@ -282,3 +284,8 @@
   }
   ?>
 </html>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+CSCI 467 Group 1A
+</footer>

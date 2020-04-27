@@ -1,8 +1,9 @@
-
-
 <?php
 
-echo '<title>Sean F - CSCI 467 Test - Z1837228</title>';
+echo '<title>Catalog - CSCI 467 Test - Z1851835</title>';
+echo '<center>';
+	echo "<body bgcolor='FFA07A'>";
+
 
 echo '<h2 align = "center">The Catalog Page</h2>';
 
@@ -28,8 +29,8 @@ catch(PDOexeption $e)
      echo "Connection was not established: " . $e->getmessage();
 }
 
-$username2 = "z1837228";
-$password2 = "1996Feb14";
+$username2 = "z1851835";
+$password2 = "2000Mar22";
 
 ?>
 
@@ -37,7 +38,7 @@ $password2 = "1996Feb14";
 
 try
 {                                                                       // This will attempt to throw an exception if something is incorrect, like a missing username
-     $dsn2 = "mysql:host=courses;dbname=z1837228";
+     $dsn2 = "mysql:host=courses;dbname=z1851835";
      $pdo2 = new PDO($dsn2, $username2, $password2);
 }
 
@@ -48,17 +49,22 @@ catch(PDOexeption $e)
 
 $sql = "SELECT number, description, price, weight, pictureURL FROM parts";
 
-echo '<table width = "15%" border = "1" cellspacing = "6" cellpadding = "3">';		// Table formatting slider values
+echo '<table width = "30%" border = "1" cellspacing = "10" cellpadding = "5">';		// Table formatting slider values
+echo '<tbody style="background-color:#FF726f">';			//here is the yellow color.... might remove later
 echo '<th> Number </th>';
 echo '<th> Description </th>';
 echo '<th> Price </th>';
 echo '<th> Weight </th>';
 echo '<th> Picture </th>';
 echo '<th> Select </th>';
+echo '<th> Quantity </th>';
+echo '<th> Add To Your Cart </th>';
+
+
 
 foreach ($pdo->query($sql) as $rows)				// This loop iterates through the rows and displays each cell's value to the user
 {
-     echo '<tr>';
+     echo '<tr>'; //start of row in loop
      echo '<td>';
      echo $rows['number'];
      echo '<td>';
@@ -76,11 +82,20 @@ foreach ($pdo->query($sql) as $rows)				// This loop iterates through the rows a
      echo '<td>';
      echo '<input type="checkbox" name="Value 1" unchecked>';
      echo '</td>';
-     echo '</tr>';
+
+     echo '<td>';
+     echo "<input type=name name='addtocart' value='Enter Quantity'/>";
+     echo '</td>';
+
+     echo '<td>';
+     echo "<input type=submit name='addtocart' value='Add to Your Cart'/>";
+     echo '</td>';
+
+     echo '</tr>'; //end of row in loop
 }
 echo '</table>';
 echo '</br>';
-echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/cart.php>";
+echo "<form method=post action=http://students.cs.niu.edu/~z1851835/cart.php>";
 	//$arraytostring6 = base64_encode(serialize($cartcontents));
 	//echo "<input type=hidden name='cart'
 	//value=$arraytostring6/>";
