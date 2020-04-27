@@ -1,10 +1,12 @@
 <html>
   <head>
     <title>
-      Your Cart
+      Group 1A Your Cart
+
     </title>
   </head>
-
+<center>
+<body bgcolor='FFA07A'
   <?php
 
 		$username1 = "z1851835";
@@ -62,12 +64,12 @@
     echo "<input type=hidden name='cart'
                  value=$arraytostring4/>";
     echo "<input type=submit name='button5'
-                 value='Return to Catelog'/>";
+                 value='Return to Catalog'/>";
   echo "</form>";
 
   echo "<form method=post action=http://students.cs.niu.edu/~z18511835/cart.php>";
     echo "<input type=submit name='button8'
-                 value='Clear Cart'/>";
+                 value='Empty Your Cart'/>";
   echo "</form>";
 
  /* if (array_key_exists('pnum', $_REQUEST))
@@ -282,3 +284,8 @@
   }
   ?>
 </html>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+CSCI 467 Group 1A
+</footer>
