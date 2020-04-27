@@ -2,9 +2,9 @@
 
 <?php
 
-echo '<title>Chitwan Bhatia - CSCI 467 Test - Z1862013</title>';
+echo '<title>Sean F - CSCI 467 Test - Z1837228</title>';
 
-echo '<h2 align = "center">CSCI 467 Test - Chitwan Bhatia</h2>';
+echo '<h2 align = "center">CSCI 467 Test - Sean F</h2>';
 
 ?>
 
@@ -31,8 +31,8 @@ catch(PDOexeption $e)
 
 echo "<p>This is a test</p>";
 
-$username2 = "z1862013";
-$password2 = "1998Jun19";
+$username2 = "z1837228";
+$password2 = "1996Feb14";
 
 ?>
 
@@ -40,7 +40,7 @@ $password2 = "1998Jun19";
 
 try
 {                                                                       // This will attempt to throw an exception if something is incorrect, like a missing username
-     $dsn2 = "mysql:host=courses;dbname=z1862013";
+     $dsn2 = "mysql:host=courses;dbname=z1837228";
      $pdo2 = new PDO($dsn2, $username2, $password2);
      echo "The connection was sucessful";
 }
@@ -60,6 +60,7 @@ echo '<th> Description </th>';
 echo '<th> Price </th>';
 echo '<th> Weight </th>';
 echo '<th> Picture </th>';
+echo '<th> Select </th>';
 
 foreach ($pdo->query($sql) as $rows)				// This loop iterates through the rows and displays each cell's value to the user
 {
@@ -76,12 +77,23 @@ foreach ($pdo->query($sql) as $rows)				// This loop iterates through the rows a
      echo $rows['weight'];
      echo '</td>';
      echo '<td>';
-     echo  $rows['pictureURL'];
-     //echo '<['pictureURL']' value=See Details/>';
+     print('<a href="'.$rows['pictureURL'].'">Link</a>');
+     echo '</td>';
+     echo '<td>';
+     echo '<input type="checkbox" name="Value 1" unchecked>';
      echo '</td>';
      echo '</tr>';
 }
 echo '</table>';
+echo '</br>';
+echo "<form method=post action=http://students.cs.niu.edu/~z1817662/Project8A/cart.php>";
+	//$arraytostring6 = base64_encode(serialize($cartcontents));
+	//echo "<input type=hidden name='cart'
+	//value=$arraytostring6/>";
+    	echo "<input type=submit name='button7'
+		value='Your Cart'/>";
+	echo "</form>";
+
 
 ?>
 
