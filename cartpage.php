@@ -10,40 +10,36 @@
   //Attempt to connect to MariaDB Database
   try
   {
-    $dsn1 = "mysql:host=courses;dbname=z1853066";
-    include("pswrds.php"); //using main file
-    $pdo1 = new PDO($dsn1, $username1, $password1);
+    $dsn1 = "mysql:host=courses;dbname=z1853066";     //connecting to the database
+    include("pswrds.php");          //using password file
+    $pdo1 = new PDO($dsn1, $username1, $password1);   //stating the username and password 
   }
 
-  //catch and handle error if there is one
   catch (PDOexception $exception1)
   {
-    echo "Database connection failure: " . $exception1->getMessage();
+    echo "Database connection failure: " . $exception1->getMessage();   //if connection fails throw and error message
   }
 
-  //Attempt to connect to server with all data
   try
   {
-    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
-    include("pswrds.php"); //unsing main psswd file
-    $pdo2 = new PDO($connection2, $username2, $password2);
+    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";        //connecting to the second database
+    include("pswrds.php"); //using password file
+    $pdo2 = new PDO($connection2, $username2, $password2);        //stating the username and password
   }
 
-  //Catahc and handle expection if tthere is one
-//also display it
-  catch (PDOexception $exception2)
+  catch (PDOexception $exception2)        //Catch and handle expection if there is one
   {
-    echo "Database connection failure: " . $exception2->getMessage();
+    echo "Database connection failure: " . $exception2->getMessage();   //throw an error message
   }
 
-  $cartitems = array(); //create the array 
+  $cartitems = array();             //create the array 
 
   if (array_key_exists('cart', $_REQUEST))
   {
-    $cartitems = unserialize(base64_decode($_REQUEST['cart'])); //unserialzie array
+    $cartitems = unserialize(base64_decode($_REQUEST['cart']));   //unserialzie array
   }
 
-  if (isset($_POST['changequantity'])) //if change quantity is selected on the cart page
+  if (isset($_POST['changequantity']))    //if change quantity is selected on the cart page
   {
     $ind = intval($_POST['index']);
     $quan = intval($_POST['quantity']);
@@ -55,17 +51,17 @@
     echo "<input type=hidden name='cart'
                  value=$a2s4/>";
     echo "<input type=submit name='button5'
-                 value='Return To The Catalog'/>"; //going back to catalog page 
+                 value='Return To The Catalog'/>"; //return back to catalog page 
   echo "</form>";
 
   echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/cartpage.php>";
     echo "<input type=submit name='button8'
-                 value='Clear Your Cart'/>"; //cleaing the acrt and resubmit to cart.p]hp
+                 value='Clear Your Cart'/>";    //cleaning the cart and resubmit to cart.php
   echo "</form>";
 
   if (array_key_exists('pnum', $_REQUEST))
   {
-    echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/moredetails.php>"; // go to see item page where they just were
+    echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/moredetails.php>"; //items page for more details
       echo "<input type=hidden name='pnum'
                    value=$_REQUEST[pnum]/>";
       $a2s5 = base64_encode(serialize($cartitems));
@@ -78,12 +74,12 @@
 
   if (!empty($cartitems))
   {
-    $plist = array(); //
-    $calclist = array(); // 
-    $calcentry = array(); //
+    $plist = array();         //defining arrays
+    $calclist = array();  
+    $calcentry = array(); 
     foreach($cartitems as $citem)
     {
-      $sql1 = "SELECT * FROM parts WHERE number = $citem[prdctnum]"; //showing the products with ==product num
+      $sql1 = "SELECT * FROM parts WHERE number = $citem[prdctnum]";   //query for parts with product num
       $query1 = $pdo2->query($sql1);
       $rows = $query1->fetchAll(PDO::FETCH_ASSOC);
       array_push($plist, $rows[0]);
@@ -96,7 +92,7 @@
     $finalprice = 0;
     foreach($cartitems as $centry)
     {
-      $sql2 = "SELECT quantity FROM inventory WHERE productID = $centry[prdctnum]"; //show the quantity
+      $sql2 = "SELECT quantity FROM inventory WHERE productID = $centry[prdctnum]"; //showing the quantity
       $query2 = $pdo1->query($sql2);
       $rows2 = $query2->fetchAll(PDO::FETCH_ASSOC);
       $numitems = $rows2[0]['quantity'];
@@ -148,13 +144,13 @@
     $addfees = round($addfees, 2);
     $finalprice = round(($itemprices + $addfees), 2);
 
-    echo "<h1>Review Your Items</h1>";
+    echo "<h1>Review Your Items</h1>";    //header
 
-    echo "<table border=3, cellspacing=5, cellpadding=5>";
+    echo "<table border=3, cellspacing=5, cellpadding=5>";  //designing the border
 echo '<tbody style="background-color:#FF726f">';
 
 
-      echo "<tr>"; //headers for table here
+      echo "<tr>";            //headers for table here
         echo "<th>Product ID</th>";
         echo "<th>Product Name</th>";
         echo "<th>Quantity Ordered</th>";
@@ -178,10 +174,9 @@ echo '<tbody style="background-color:#FF726f">';
         }
 
           echo "<td>";
-            echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/cartpage.php>"; //information on changing settings on
-//infomration on changing
-//what is currently in the cart
-              if (array_key_exists('pnum', $_REQUEST))
+            echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/cartpage.php>"; //rendoring to cart page
+
+              if (array_key_exists('pnum', $_REQUEST))       //what is currently in the cart
               {
                 echo "<input type=hidden name='pnum'
                              value=$_REQUEST[pnum]/>";
@@ -239,12 +234,12 @@ echo '<tbody style="background-color:#FF726f">';
       }
     echo "</table>";
 
-    echo "<h2>Total Order Statistics</h2>";
+    echo "<h2>Total Order Statistics</h2>";         //order and desgining of the table
     echo "<table border=3, cellspacing=3, cellpadding=5>";
 echo '<tbody style="background-color:#FF726f">';
 
 
-      echo "<tr>"; //table headers
+      echo "<tr>";                  //table headers
         echo "<th>Total Price ($) </th>";
         echo "<th>Total Weight (lbs)</th>";
         echo "<th>Additional Fees ($) </th>";
@@ -259,9 +254,9 @@ echo '<tbody style="background-color:#FF726f">';
     echo "</table>";
 
     echo "<h2>Ready to Order? Continue to Cart.</h2>";
-
+      //moving to the checkoutpage and pulling everything over
     echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/checkoutpage.php>";
-//moving to the checkoutpage and pulling everything over
+
       $a2s12 = base64_encode(serialize($cartitems));
       echo "<input type=hidden name='cart'
                    value=$a2s12/>";
