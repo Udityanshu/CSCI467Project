@@ -1,9 +1,9 @@
 <!-- reception.php -->
 
 <html><head>
-<title> 1A CSCI 467 Checkout - Z1853066</title></head> //the header of the file
+<title> 1A CSCI 467 Checkout - Z1853066</title></head> 
 <center>
-<body bgcolor='FFA07A'> //the chosen color of the backgroud
+<body bgcolor='FFA07A'> 
 
   <?php
     try
@@ -87,11 +87,11 @@ echo '<tbody style="background-color:#FF726F">'; //colorring
 
           echo "<td>";
             echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/receptiondesk.php>";
-              echo "<input type=number name='qntty' //get quantity
+              echo "<input type=number name='qntty' <! get quantity !>
                            min=1 required/>";
-              echo "<input type=hidden name='pnmbr' //get product id
+              echo "<input type=hidden name='pnmbr' <! get product id !>
                            value=$num[productID]/>";
-              echo "<input type=submit name='change' //get the change
+              echo "<input type=submit name='change' <! get the change !>
                            value='Modify'/>";
             echo "</form>";
           echo "</td>";
@@ -100,7 +100,7 @@ echo '<tbody style="background-color:#FF726F">'; //colorring
       }
   ?>
 
-<footer> //small extra details in the footer
+<footer> <! small extra details in the footer !>
 
 Thank You For Shopping With Us
 <br>
