@@ -7,29 +7,29 @@
 //connecting to MAria db 
     try
     {
-      $dsn1 = "mysql:host=courses;dbname=z1853066";
+      $dsn1 = "mysql:host=courses;dbname=z1853066"; //database information
       include("pswrds.php"); //connecting with pswd file
-      $pdo1 = new PDO($dsn1, $username1, $password1);
+      $pdo1 = new PDO($dsn1, $username1, $password1); //user name and password
     }
 
 
 //if error dispaly error code
     catch(PDOexception $exception1)
     {
-      echo "Database connection failed: " . $exception1->getMessage();
+      echo "Database connection failed: " . $exception1->getMessage(); //if failed, throw an error message
     }
 
 //connecting to blitz server if error display error code
     try
     {
-      $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
-      include("pswrds.php");
-      $pdo2 = new PDO($connection2, $username2, $password2);
+      $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467"; //connecting to database
+      include("pswrds.php"); //password
+      $pdo2 = new PDO($connection2, $username2, $password2); //user name and password
     }
 
     catch(PDOexception $exception2)
     {
-      echo "Database connection failed: " . $exception2->getMessage();
+      echo "Database connection failed: " . $exception2->getMessage(); //send an error message if failed
     }
 
     echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/orders.php>"; 
@@ -96,20 +96,20 @@ echo '<tbody style="background-color:#FF726f">';
 
 
       echo "<tr>";
-        echo "<th>Weights</th>";
-        echo "<th>Charges</th>";
-        echo "<th>Delete</th>";
+        echo "<th>Weights</th>"; //display weights
+        echo "<th>Charges</th>"; //display charges
+        echo "<th>Delete</th>"; //display delete
       echo "</tr>";
 
       foreach($brackets as $bracket)
       {
         echo "<tr>";
           echo "<td>";
-            echo "$bracket[bracket]";
+            echo "$bracket[bracket]"; //call on the bracket
           echo "</td>";
 
           echo "<td>";
-            echo "$bracket[charge]";
+            echo "$bracket[charge]"; //call on the charge
           echo "</td>";
 
           echo "<td>";
