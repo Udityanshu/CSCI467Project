@@ -1,41 +1,35 @@
-<!-- conn.php -->
+<!-- connection.php -->
 
 <?php
-//connect to the databases
 //used for the workstations.php view only
 
-
-//Connecting to MariaDB is first connection
 try
 {
-  $dsn1 = "mysql:host=courses;dbname=z1853066"; 
-
-
-  include("pswrds.php");
-  $pdo1 = new PDO($dsn1, $username1, $password1);
+  $dsn1 = "mysql:host=courses;dbname=z1853066";   //connecting to the database
+  include("pswrds.php");          //using password file
+  $pdo1 = new PDO($dsn1, $username1, $password1);   //stating username and password
 }
 
 //handle the error if there is an errors and display the error code and info
 catch(PDOexception $exception1)
 {
-  echo "Database connection failed: " . $exception1->getMessage();
+  echo "Database connection failed: " . $exception1->getMessage();  //throw an error
 }
 
 
-//Try connecting to the server with the DB data on it for the project. (blitz)
 try
 {
-  $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
-  include("pswrds.php"); //passwords file
-  $pdo2 = new PDO($connection2, $username2, $password2); 
+  $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";  //connecting to the second database
+  include("pswrds.php");            //using password file
+  $pdo2 = new PDO($connection2, $username2, $password2);      //stating username and password
 }
 
 // Error hadnling if there is one, display the error
 catch(PDOexception $exception2)
 {
-  echo "Database connection failed: " . $exception2->getMessage();
+  echo "Database connection failed: " . $exception2->getMessage();    //throw an error
 }
-//USed for the workstations.php file only.
+
 ?>
 
 
