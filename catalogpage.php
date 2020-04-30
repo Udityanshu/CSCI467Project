@@ -6,12 +6,12 @@
 <body bgcolor='FFA07A'>
 
   <?php
-  $cartitems = array(); //initialize the variable as an array() 
+  $cartitems = array(); 	//initialize the variable as an array() 
 
-  //maintain the cart array
-  if (array_key_exists('cart', $_REQUEST)) //if cart
+  
+  if (array_key_exists('cart', $_REQUEST))	//maintain the cart array
   {
-    $cartitems = unserialize(base64_decode($_REQUEST['cart'])); //unseralize the array to be uses
+    $cartitems = unserialize(base64_decode($_REQUEST['cart'])); //unseralize the array 
   }
 
   echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/catalogpage.php>"; //method post to catelog.php page
@@ -35,36 +35,32 @@
                  value='Your Cart'/>";
   echo "</form>"; //end of cart.php entry form
 
-
-// Connecting to MariaDB if it fails then catch error and display it
   try
   {
-    $dsn1 = "mysql:host=courses;dbname=z1853066";
-    include("pswrds.php"); //using data from here
-    $pdo1 = new PDO($dsn1, $username1, $password1);
+    $dsn1 = "mysql:host=courses;dbname=z1853066";	//connecting to the database
+    include("pswrds.php");	 //using password file
+    $pdo1 = new PDO($dsn1, $username1, $password1);	//stating username and password
   }
 
 //Error handler
   catch(PDOexception $exception1)
   {
-    echo "Database connection failed: " . $exception1->getMessage();
+    echo "Database connection failed: " . $exception1->getMessage();	//throw an error
   }
 
-//Connect to the DB with all data provided in project details
   try
   {
-    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
-    include("pswrds.php"); //again using doc for variables
-    $pdo2 = new PDO($connection2, $username2, $password2);
+    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";	//connecting to the second database
+    include("pswrds.php"); 			//using password file
+    $pdo2 = new PDO($connection2, $username2, $password2);		//stating username and password
   }
 
 //Handle an error and display it if there is one
   catch(PDOexception $exception2)
   {
-    echo "Database connection failed: " . $exception2->getMessage();
+    echo "Database connection failed: " . $exception2->getMessage();	//throw an error
   }
 
-//end of the beginning buttons and the connection to DB's
   ?>
 
   <?php
@@ -77,25 +73,26 @@
 
   if(array_key_exists('list', $_REQUEST))
   {
-    //test a query
-    echo "<h1>Group 1A Product Catalog Page</h1>";
+    echo "<h1>Group 1A Product Catalog Page</h1>";	//header
 	echo "<h3> COVID-19 Has NOT Affected Our Shipping Times!</h3>";
 	echo "<h3> For more information during COVID-19 Please Contact US!</h3>";
-    $sql1 = "SELECT * FROM parts"; //Retreieve all parts in the DB and display to user
-    $query1 = $pdo2->query($sql1); //actualyl request to the server
+   	
+	  //test a query
+	$sql1 = "SELECT * FROM parts"; 	//Retreieve all parts in the DB and display to user
+    $query1 = $pdo2->query($sql1); 	//actualyl request to the server
 
     //get the row to print
-    $rows = $query1->fetchAll(PDO::FETCH_ASSOC); //fetch all and store row in rows to be echo'd
+    $rows = $query1->fetchAll(PDO::FETCH_ASSOC); 	//fetch all and store row in rows to be echo
 
     //use a table to print the results
-    echo "<table width='40%'border=3, cellspacing=15,cellpadding=1>"; //table settings
-	echo '<tbody style="background-color:#FF726F">'; //colorring
-      echo "<tr>"; //sttart of row
+    echo "<table width='40%'border=3, cellspacing=15,cellpadding=1>"; 	//table settings
+	echo '<tbody style="background-color:#FF726F">'; 	//coloring
+      echo "<tr>"; 			
         echo "<th>Product #</th>";
         echo "<th>Product Name</th>";
         echo "<th>More information</th>";
-      echo "</tr>"; //end of headers
-      foreach($rows as $value) //displaying the DB data
+      echo "</tr>"; 				
+      foreach($rows as $value) 		//displaying the database contents
       {
         echo "<tr>"; //new row for the loop
           echo "<td>";
@@ -105,7 +102,7 @@
           echo "<td>";
             echo "$value[description]"; //product name here
           echo "</td>";
-        //button to see more detials, more informatino on the product
+        		//button to see more detials, more informatino on the product
           echo "<td>";
             echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/moredetails.php>"; //button for taking to details.php page
               $a2s = base64_encode(serialize($value));
@@ -116,11 +113,11 @@
                            value=$a2s2/>";
               echo "<input type=submit name='$value[number]' // the number to request more inbfromation on
                            value='See More Information'/>";
-            echo "</form>"; //end of form
-          echo "</td>"; //end data
-        echo "</tr>"; //end row
-      } //loop here to keep doing for all data in DB
-    echo "</table>"; //end of table
+            echo "</form>"; 	
+          echo "</td>"; 	
+        echo "</tr>"; 	
+      }
+    echo "</table>";
   }
   ?>
 </html>
