@@ -1,7 +1,7 @@
 <!-- connection.php -->
 
 <?php
-//used for the workstations.php view only
+//used for the warehouse.php view only
 
 try
 {
