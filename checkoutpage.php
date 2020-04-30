@@ -6,8 +6,8 @@
 	echo "<body bgcolor='FFA07A'>";
 	echo'<title> 1A CSCI 467 Checkout - Z1853066</title>';
 
-$cartitems = array();
-  if (array_key_exists('cart', $_REQUEST) || array_key_exists('placeorder', $_REQUEST))
+$cartitems = array();		//initialize the variable as an array() 
+  if (array_key_exists('cart', $_REQUEST) || array_key_exists('placeorder', $_REQUEST))		//maintain the cart array
   {
     $cartitems = unserialize(base64_decode($_REQUEST['cart']));
   }
@@ -16,7 +16,7 @@ $cartitems = array();
   $totalweight = 0;
   $addfees = 0;
   $finalprice = 0;
-  if (array_key_exists('gotocheckout', $_REQUEST) || array_key_exists('placeorder', $_REQUEST))
+  if (array_key_exists('gotocheckout', $_REQUEST) || array_key_exists('placeorder', $_REQUEST))		//if array for checkout
   {
     $itemprices = round(floatval($_REQUEST['itemprices']), 2);
     $totalweight = round(floatval($_REQUEST['totalweight']), 2);
@@ -24,12 +24,13 @@ $cartitems = array();
     $finalprice = round(floatval($_REQUEST['finalprice']), 2);
   }
 
-  $name = "x";
+  $name = "x";			//credentials prototype
   $email = "x@xmail.com";
   $address = "x streat";
   $cnumber = "xxxxxxxxxxxxxxxx";
   $cxp = "xx/xxxx";
-  if (array_key_exists('placeorder', $_REQUEST))
+	
+  if (array_key_exists('placeorder', $_REQUEST))	//if exists and requested
   {
     $name = $_REQUEST['name'];
     $email = $_REQUEST['email'];
@@ -40,43 +41,43 @@ $cartitems = array();
 
   try
   {
-    $dsn1 = "mysql:host=courses;dbname=z1853066";
-    include("pswrds.php");
-    $pdo1 = new PDO($dsn1, $username1, $password1);
+    $dsn1 = "mysql:host=courses;dbname=z1853066";	//connecting to the database
+    include("pswrds.php");		//using password file
+    $pdo1 = new PDO($dsn1, $username1, $password1);	//stating username and password
   }
 
-  catch (PDOexception $exception1)
+  catch (PDOexception $exception1)	//error handler
   {
-    echo "Database connection failed: " . $exception1->getMessage();
+    echo "Database connection failed: " . $exception1->getMessage();	//throw an error
   }
 
   try
   {
-    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
-    include("pswrds.php");
-    $pdo2 = new PDO($connection2, $username2, $password2);
+    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";	//connecting to the database
+    include("pswrds.php");			//using password file
+    $pdo2 = new PDO($connection2, $username2, $password2);	//stating username and password
   }
 
   catch (PDOexception $exception2)
   {
-    echo "Database connection failed: " . $exception2->getMessage();
+    echo "Database connection failed: " . $exception2->getMessage();	//throw an error
   }
 
-  echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/cartpage.php>";
-    $a2s = base64_encode(serialize($cartitems));
+  echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/cartpage.php>";  //cart button to submit the cartpage.php
+    $a2s = base64_encode(serialize($cartitems));	//serializing the array
     echo "<input type=hidden name='cart'
                  value=$a2s/>";
     echo "<input type=submit name='backtocart'
-                 value='Go Back To Your Cart'/>";
+                 value='Go Back To Your Cart'/>";	//pointting back to the cart
   echo "</form>";
 
 
 
   if (!(array_key_exists('placeorder', $_REQUEST)))
   {
-    echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/checkoutpage.php>";
-      $a2s13 = base64_encode(serialize($cartitems));
-      echo "<input type=hidden name='cart'
+    echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/checkoutpage.php>"; //on checkout page
+      $a2s13 = base64_encode(serialize($cartitems));	//serializing the array
+      echo "<input type=hidden name='cart'	//button for entering necessary credentials
                    value=$a2s13/>";
       echo "<input type=hidden name='itemprices'
                    value=$itemprices/>";
@@ -115,7 +116,7 @@ echo "Card Expiration Date: ";
   else
   {
     //check if the customer already exists
-    $sql1 = "SELECT * FROM customer WHERE name = '$name' AND email = '$email'";
+    $sql1 = "SELECT * FROM customer WHERE name = '$name' AND email = '$email'";	//select from customers where it matches from DB
     $query1 = $pdo1->query($sql1);
     $matchcust = $query1->fetchAll(PDO::FETCH_ASSOC);
     $customerid = 0;
