@@ -1,13 +1,14 @@
 /**********************************************
 *                                             *
-* Name:   Alexander Wold  (Z1817662)          *
-*         Amy Jakopin     (Z1813641)          *
-*         Dillon Chappell (Z1761203)          *
+* Name:   Rami Lake (Z1853066)                *
+*         Chitwan Bhatia (Z1862013)           *
+*         Udityanshu Goyal (Z1851835)         *
+*	  Sean Fitzgerald (Z1837228)	      *
 *                                             *
 * File:   script2                             *
-* Due:    12/09/2019                          *
+* Due:    05/03/2020                          *
 * Prof:   Raimund Ege                         *
-* Sect:   1                                   *
+* Group:  1A				      *
 *                                             *
 **********************************************/
 
@@ -327,14 +328,15 @@ INSERT INTO inventory (quantity)
 
 /**********************************************
 *                                             *
-* Name:   Alexander Wold  (Z1817662)          *
-*         Amy Jakopin     (Z1813641)          *
-*         Dillon Chappell (Z1761203)          *
+* Name:   Rami Lake (Z1853066)                *
+*         Chitwan Bhatia (Z1862013)           *
+*         Udityanshu Goyal (Z1851835)         *
+*	  Sean Fitzgerald (Z1837228)	      *
 *                                             *
 * File:   script2                             *
-* Due:    12/09/2019                          *
+* Due:    05/03/2020                          *
 * Prof:   Raimund Ege                         *
-* Sect:   1                                   *
+* Group:  1A				      *
 *                                             *
 **********************************************/
 
