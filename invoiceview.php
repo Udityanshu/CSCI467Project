@@ -5,7 +5,7 @@
     </title>
   </head>
 <center>
-<body bgcolor='FFA07A'>
+<body bgcolor='FFA07A'>	// test 
 <h1> Invoice View Please Enter An Order ID to Retrieve Information</h1>
   <?php
     require("connection.php"); //using conn.php file
