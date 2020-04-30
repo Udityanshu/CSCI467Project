@@ -41,13 +41,13 @@ echo '<tbody style="background-color:#FF726F">'; //colorring
           while($description = $stmtgetdescription->fetch(PDO::FETCH_ASSOC))
           {
             echo '<tr><td>';
-            echo $row['orderID'];
+            echo $row['orderID']; //display orderID
             echo '</td><td> ';
-            echo $description['description'];
+            echo $description['description']; //display description
             echo '</td><td> ';
-            echo $row['productID'];
+            echo $row['productID']; //display productID
             echo '</td><td> ';
-            echo $row['quantity'];
+            echo $row['quantity']; //display quantity
             echo '</td></tr>';
           }
 
