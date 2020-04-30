@@ -87,11 +87,11 @@ echo '<tbody style="background-color:#FF726F">'; //colorring
 
           echo "<td>";
             echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/receptiondesk.php>";
-              echo "<input type=number name='qntty' <! get quantity !>
+              echo "<input type=number name='qntty' 
                            min=1 required/>";
-              echo "<input type=hidden name='pnmbr' <! get product id !>
+              echo "<input type=hidden name='pnmbr' 
                            value=$num[productID]/>";
-              echo "<input type=submit name='change' <! get the change !>
+              echo "<input type=submit name='change' 
                            value='Modify'/>";
             echo "</form>";
           echo "</td>";
@@ -100,7 +100,7 @@ echo '<tbody style="background-color:#FF726F">'; //colorring
       }
   ?>
 
-<footer> <! small extra details in the footer !>
+<footer> 
 
 Thank You For Shopping With Us
 <br>
