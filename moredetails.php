@@ -1,45 +1,43 @@
 <!-- details.php-->
 <html>
 <center>
-<body bgcolor='FFA07A'>
+<body bgcolor='FFA07A'>		<!-- set the background color as light salmon to match theme -->
 
 
   <?php
-// Connecting to the Mariadb Server
   try
   {
-    $dsn1 = "mysql:host=courses;dbname=z1853066";
-    include("pswrds.php"); //using logon  page
+    $dsn1 = "mysql:host=courses;dbname=z1853066";	// Connect to database on MariaDB using this login credentials
+    include("pswrds.php");				// include pswrds.php to match the given password
 
     $pdo1 = new PDO($dsn1, $username1, $password1);
   }
-//Catch adn  display the error if there is one
   catch (PDOexeption $exception1)
   {
-    echo "Database connection failed: " . $exception1->getMessage();
+    echo "Database connection failed: " . $exception1->getMessage();	// print this error message if connection is unsuccessful
   
 
 }
-// Conncting to the server that holds data
+
   try
   {
-    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
-    include("pswrds.php"); //using login page
-    $pdo2 = new PDO($connection2, $username2, $password2);
+    $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";	// connect to blitz.cs.niu.edu for legacy DB
+    include("pswrds.php"); 						// include pswrds.php to match the given password
+    $pdo2 = new PDO($connection2, $username2, $password2);	// establish connection2 using these credentials
   }
-//Catch and dispaly the error if there is one 
+
   catch (PDOexception $exception2)
   {
-    echo "Database connection failed: " . $exception2->getMessage();
+    echo "Database connection failed: " . $exception2->getMessage();	// print this error message if connection is unsuccessful
   }
 
-  //initialzize the cart
-  $cartitems = array(); //make the array to be used holding data 
+  
+  $cartitems = array(); 	// establish an array to hold user's cart items
 
-//Make surre the cart is populated
-  if (array_key_exists('cart', $_REQUEST))
+
+  if (array_key_exists('cart', $_REQUEST))		//Make sure the cart is populated
   {
-    $cartitems = unserialize(base64_decode($_REQUEST['cart'])); //unserialze the cart o be used
+    $cartitems = unserialize(base64_decode($_REQUEST['cart'])); // unserialze the cart to be used
   }
 
   //check for the existence of an item
