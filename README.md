@@ -1,5 +1,9 @@
 # CSCI467Project
-CSCI467
+
+Run database1 first and then database2 in MariaDB to create and populate the tables.
+
+
+Links:
 
 http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/catalogpage.php
 

@@ -1,7 +1,7 @@
 <!-- reception.php -->
 
 <html><head>
-<title> 1A CSCI 467 Checkout - Z1853066</title></head> 
+<title> 1A CSCI 467 Reception Desk</title></head> 
 <center>
 <body bgcolor='FFA07A'> 
 

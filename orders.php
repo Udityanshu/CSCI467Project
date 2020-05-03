@@ -1,5 +1,5 @@
 <!-- orders.php -->
-<html><head><title> Group 1A Catalog Page
+<html><head><title> Group 1A Orders Page
 </title></head>
 <center>
 <body bgcolor='FFA07A'>
@@ -13,36 +13,36 @@
   <?php
     try
     {
-      $dsn1 = "mysql:host=courses;dbname=z1853066"; //connecting to database with ZID
-      include("pswrds.php"); //propper password
-      $pdo1 = new PDO($dsn1, $username1, $password1); //connecting to database
+      $dsn1 = "mysql:host=courses;dbname=z1853066";
+      include("pswrds.php");
+      $pdo1 = new PDO($dsn1, $username1, $password1);
     }
 
     catch(PDOexception $exception1)
     {
-      echo "Database connection failed: " . $exception1->getMessage(); //call the error message
+      echo "Database connection failed: " . $exception1->getMessage();
     }
 
     try
     {
-      $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467"; //connecting to the second database
-      include("pswrds.php"); //including the password
-      $pdo2 = new PDO($connection2, $username2, $password2); //connecting to the second database
+      $connection2 = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
+      include("pswrds.php");
+      $pdo2 = new PDO($connection2, $username2, $password2);
     }
 
     catch(PDOexception $exception2)
     {
-      echo "Database connection failed: " . $exception2->getMessage(); //call the error message
+      echo "Database connection failed: " . $exception2->getMessage();
     }
 
     //handle a search for date
-    if (array_key_exists('searchdate', $_REQUEST)) //making sure that the array exists
+    if (array_key_exists('searchdate', $_REQUEST))
     {
-      $lowval = date('Y-m-d', strtotime($_REQUEST['lowerdate'])); //include the dates
-      $highval = date('Y-m-d', strtotime($_REQUEST['higherdate'])); //include the dates
+      $lowval = date('Y-m-d', strtotime($_REQUEST['lowerdate']));
+      $highval = date('Y-m-d', strtotime($_REQUEST['higherdate']));
 
       $statement = "SELECT ordersID, custid, finalprice, date, status FROM orders
-                    WHERE date BETWEEN \"$lowval\" AND \"$highval\""; //the sql statement 
+                    WHERE date BETWEEN \"$lowval\" AND \"$highval\"";
       $_POST['sql'] = $statement;
     }
 
@@ -55,7 +55,7 @@
       $_POST['sql'] = $statement;
     }
 
-    //search for price
+    //handle a search for price
     else if (array_key_exists('searchprice', $_REQUEST))
     {
       $lownum = round(floatval($_REQUEST['lowerprice']), 2);
@@ -66,17 +66,17 @@
       $_POST['sql'] = $statement;
     }
 
-	//checking if the array exists already
+
     if (!array_key_exists('viewall', $_REQUEST) && !array_key_exists('search', $_REQUEST))
     {
       echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/orders.php>";
         echo "<input type=submit name='viewall'
-                     value='View All Orders'/>"; //view the values
+                     value='View All Orders'/>";
       echo "</form>";
 
       echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/weightcharge.php>";
         echo "<input type=submit name='goweights'
-                     value='Adjust Charges'/>"; //view the charges
+                     value='Adjust Charges'/>";
       echo "</form>";
     }
 
@@ -84,21 +84,19 @@
     {
       echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/orders.php>";
         echo "<input type=submit name='closeall'
-                     value='Close Orders'/>"; //close the orders
+                     value='Close Orders'/>";
       echo "</form>";
 
-	    //call the orders.php
       echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/orders.php>";
         echo "<input type=submit name='searchdate'
-                     value='Search Dates Between'/>"; //search for the propper date
+                     value='Search Dates Between'/>";
         echo "<input type=text name='lowerdate'
-                     placeholder='Lower Bound' required/>"; 
+                     placeholder='Lower Bound' required/>";
         echo "<input type=text name='higherdate'
                      placeholder='Upper Bound' required/>";
         echo "<input type=hidden name='search' value='D'/>";
       echo "</form>";
 
-	    //code required for the search status
       echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/orders.php>";
         echo "<input type=submit name='searchstatus'
                      value='Search by Status of      '/>";
@@ -107,7 +105,6 @@
         echo "<input type=hidden name='search' value='S'/>";
       echo "</form>";
 
-	    //code required for the searching of the price
       echo "<form method=post action=http://students.cs.niu.edu/~z1853066/CSCI467/Main/U/orders.php>";
         echo "<input type=submit name='searchprice'
                     value='Search Prices Between'/>";
@@ -118,14 +115,12 @@
         echo "<input type=hidden name='search' value='P'/>";
       echo "</form>";
 
-	    //the sql statement to gather the appropriate information
       $sql1 = "SELECT ordersID, custid, finalprice, date, status FROM orders";
       if (array_key_exists('sql', $_POST) && array_key_exists('sql', $_POST))
       {
         $sql1 = $_POST['sql'];
       }
 
-	    //throw error message if there is a problem
       if (array_key_exists('sql', $_REQUEST))
       {
         $sql1 = "";
@@ -139,16 +134,14 @@
         $sql1 = substr($sql1, 0, -1);
       }
 
-	    //call the query
       $query1 = $pdo1->query($sql1);
       $allorders = $query1->fetchAll(PDO::FETCH_ASSOC);
 
       $toarray = explode(" ", $sql1);
 
-	    //creating design for the page
       echo "<table border=5,cellspacing=5,cellpadding=5>";
 echo '<tbody style="background-color:#FF726F">'; //colorring
-//talbe settings for the page
+//talbe settings
         echo "<tr>";
           echo "<th>Order ID</th>";
           echo "<th>Customer ID</th>";
@@ -162,23 +155,23 @@ echo '<tbody style="background-color:#FF726F">'; //colorring
         {
           echo "<tr>";
             echo "<td>";
-              echo "$order[ordersID]"; //call upon ordersID
+              echo "$order[ordersID]";
             echo "</td>";
 
             echo "<td>";
-              echo "$order[custid]"; //call upon custid
+              echo "$order[custid]";
             echo "</td>";
 
             echo "<td>";
-              echo "$order[finalprice]"; //call upon finalprice
+              echo "$order[finalprice]";
             echo "</td>";
 
             echo "<td>";
-              echo "$order[date]"; //call upon the date
+              echo "$order[date]";
             echo "</td>";
 
             echo "<td>";
-              echo "$order[status]"; //call upon the status
+              echo "$order[status]";
             echo "</td>";
 
             echo "<td>";
